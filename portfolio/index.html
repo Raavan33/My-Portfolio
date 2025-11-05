@@ -1,0 +1,163 @@
+from pathlib import Path
+
+# HTML with fade-in effect for photo
+final_html_with_fade = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Singarapu Sujith Kumar — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(180deg,#07080a 0%,#0b0e13 40%,#0f1724 100%);
+    color:#e6eef8;
+    line-height:1.5;
+    padding:28px;
+  }
+  .container{max-width:1100px;margin:0 auto;}
+  .neon{ text-shadow:0 2px 8px rgba(0,230,184,0.12),0 0 20px rgba(139,92,246,0.04); }
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;gap:12px}
+  .brand h1{font-size:18px;font-weight:700}
+  .role{color:#98a6b7;font-size:13px}
+  nav{display:flex;gap:12px;align-items:center}
+  nav a{color:#cbd6e6;font-size:14px;text-decoration:none;padding:8px 10px;border-radius:8px}
+  nav a:hover{background:rgba(255,255,255,0.05)}
+  .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:32px}
+  .hero h2{font-size:38px;line-height:1.02;font-weight:800;margin-bottom:12px}
+  .hero p{color:#b7c5d6;max-width:58ch}
+  .btn{display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:600}
+  .btn-primary{background:linear-gradient(90deg,#00e6b8,#8b5cf6);color:#04121a}
+  .card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
+        padding:18px;border-radius:12px;backdrop-filter:blur(6px);}
+  .muted{color:#9aa6b8;font-size:14px}
+  .fade-up{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .fade-up.visible{opacity:1;transform:none}
+
+  /* glowing fade-in photo */
+  @keyframes fadeInPhoto {
+    0% {opacity: 0; filter: brightness(0.2) blur(2px); box-shadow: none;}
+    60% {opacity: 1; filter: brightness(1.1); box-shadow: 0 0 35px rgba(59,130,246,0.8);}
+    100% {filter: brightness(1); box-shadow: 0 0 0 rgba(59,130,246,0);}
+  }
+  .profile-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:240px;
+  }
+  .profile-container img{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    border:3px solid #3b82f6;
+    object-fit:cover;
+    animation: fadeInPhoto 1.4s ease-in-out forwards;
+  }
+
+  @media(max-width:900px){.hero{grid-template-columns:1fr}.profile-container{margin-top:20px}}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div>
+          <h1 class="neon">Singarapu Sujith Kumar</h1>
+          <div class="role">Full Stack Developer</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#por">Positions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div>
+        <h2 class="neon fade-up">Hello, I’m <span class="accent">Singarapu Sujith Kumar</span><br><span>Full Stack Developer</span></h2>
+        <p class="muted fade-up" style="margin-top:14px">
+          Crafting intelligent, full-stack experiences with precision and AI-driven innovation. 
+          I build scalable web apps, APIs, and intelligent systems that blend elegant design with robust engineering.
+        </p>
+        <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- Your Photo Replaced Here -->
+      <div class="card profile-container fade-up">
+        <img src="profile.jpg" alt="Singarapu Sujith Kumar">
+      </div>
+    </main>
+
+    <section id="skills" class="fade-up">
+      <h3 class="neon">Skills</h3>
+      <p class="muted">Full Stack Web Development (MERN Stack), MongoDB, MySQL, REST APIs, Figma, Git, Power BI</p>
+    </section>
+
+    <section id="projects" class="fade-up">
+      <h3 class="neon">Projects</h3>
+      <div class="card">
+        <strong>Zomato Restaurant Listing & Search:</strong>
+        <p class="muted">
+          Developed a web-based application replicating Zomato's features — restaurant listing, search, filtering, and user interactions.
+        </p>
+      </div>
+      <div class="card" style="margin-top:10px;">
+        <strong>RedBus App Clone:</strong>
+        <p class="muted">
+          Built a clone of RedBus — an online bus ticketing and hiring platform using React, Express, MongoDB, and CSS.
+          <br>Live: <a href="https://redbus.netlify.app/">redbus.netlify.app</a>
+          <br>GitHub: <a href="https://github.com/Raavan33/redbus-app">github.com/Raavan33/redbus-app</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="achievements" class="fade-up">
+      <h3 class="neon">Achievements</h3>
+      <p class="muted">Secured rank in JEE Advanced, admitted to IIT Gandhinagar. Completed multiple certifications with Let’s Upgrade in Java, MongoDB, Python, Web Development, and Power BI.</p>
+    </section>
+
+    <section id="por" class="fade-up">
+      <h3 class="neon">Positions of Responsibility</h3>
+      <p class="muted"><strong>Coordinator, Student Academic Council, IIT Gandhinagar:</strong> Led 6+ editions of “Quill” and organized GRE/TOEFL sessions.</p>
+      <p class="muted"><strong>Core Team Member, Odyssey Astronomy Club:</strong> Led Student Satellite Initiative and organized ISRO-led events with 200+ participants.</p>
+    </section>
+
+    <section id="contact" class="fade-up">
+      <h3 class="neon">Contact</h3>
+      <p class="muted">
+        📧 singarapu.sujith.kumar@iitgn.ac.in | sujithrockkzz@gmail.com <br>
+        📞 +91 8919428610 <br>
+        🔗 <a href="https://linkedin.com/in/singarapu-sujith-kumar-15760525a">LinkedIn</a> | 
+        <a href="https://github.com/Raavan33">GitHub</a>
+      </p>
+    </section>
+
+    <footer style="text-align:center;margin-top:30px;color:#8ca3c1;">
+      © 2025 Singarapu Sujith Kumar — Designed with 💙 using AI-inspired aesthetics
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('.fade-up').forEach(el=>{
+      const io=new IntersectionObserver(e=>{
+        e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible');});
+      });
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
+"""
+
+# Save to file
+fade_file = Path("/mnt/data/portfolio_sujith_with_photo_fade.html")
+fade_file.write_text(final_html_with_fade, encoding="utf-8")
+fade_file
